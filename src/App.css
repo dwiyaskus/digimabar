@@ -1,0 +1,322 @@
+/* .App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.container-fit {
+  min-width: 1325px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
+
+.container-fit {
+  min-width: 1325px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+/* Primary Color */
+.background-primary {
+  background: #252525;
+}
+.background-gold {
+  background: #e6ca6b;
+}
+.color-gold {
+  color: #e6ca6b;
+}
+/* margin-padding-border*/
+.no-margin {
+  margin: 0px !important;
+}
+.no-margin-left {
+  margin-left: 0px;
+}
+.no-margin-right {
+  margin-right: 0px;
+}
+.no-margin-top {
+  margin-top: 0px;
+}
+.no-margin-bottom {
+  margin-bottom: 0px;
+}
+.no-padding {
+  padding: 0px;
+}
+.no-padding-left {
+  padding-left: 0px;
+}
+.no-padding-right {
+  padding-right: 0px;
+}
+.no-padding-top {
+  padding-top: 0px;
+}
+.no-padding-bottom {
+  padding-bottom: 0px;
+}
+.margin-five {
+  margin: 5px;
+}
+.margin-ten {
+  margin: 10px;
+}
+.margin-fifteen {
+  margin: 15px;
+}
+.margin-right-five {
+  margin-right: 5px;
+}
+.margin-right-ten {
+  margin-right: 10px;
+}
+.margin-right-fifteen {
+  margin-right: 15px;
+}
+.margin-right-twentyfive {
+  margin-right: 25px;
+}
+.margin-left-five {
+  margin-left: 5px;
+}
+.margin-left-ten {
+  margin-left: 10px;
+}
+.margin-left-fifteen {
+  margin-left: 15px;
+}
+.margin-left-twentyfive {
+  margin-left: 25px;
+}
+.margin-top-five {
+  margin-top: 5px;
+}
+.margin-top-ten {
+  margin-top: 10px;
+}
+.margin-top-fifteen {
+  margin-top: 15px;
+}
+.margin-bottom-five {
+  margin-bottom: 5px;
+}
+.margin-bottom-ten {
+  margin-bottom: 10px;
+}
+.margin-bottom-fifteen {
+  margin-bottom: 15px;
+}
+.margin-bottom-twentyfive {
+  margin-bottom: 25px;
+}
+.padding-five {
+  padding: 5px;
+}
+.padding-ten {
+  padding: 10px;
+}
+.padding-fifteen {
+  padding: 15px;
+}
+.padding-top-five {
+  padding-top: 5px;
+}
+.padding-top-ten {
+  padding-top: 10px;
+}
+.padding-top-fifteen {
+  padding-top: 15px;
+}
+.padding-left-five {
+  padding-left: 5px;
+}
+.padding-left-ten {
+  padding-left: 10px;
+}
+.padding-left-fifteen {
+  padding-left: 15px;
+}
+.padding-left-tewenty {
+  padding-left: 20px !important;
+}
+.padding-right-five {
+  padding-right: 5px;
+}
+.padding-right-ten {
+  padding-right: 10px;
+}
+.padding-right-fifteen {
+  padding-right: 15px;
+}
+.padding-side-twentyfive {
+  padding-right: 25px !important;
+  padding-left: 25px !important;
+}
+.font12 {
+  font-size: 12px !important;
+}
+.font14 {
+  font-size: 14px !important;
+}
+.font16 {
+  font-size: 16px !important;
+}
+.font20 {
+  font-size: 20px !important;
+}
+.font24 {
+  font-size: 24px !important;
+}
+.font34 {
+  font-size: 34px !important;
+}
+.next:before {
+  content: '\203A';
+  font-family: slick;
+  font-size: 40px;
+  line-height: 1;
+  opacity: 0.75;
+  color: black;
+  -webkit-font-smoothing: antialiased;
+}
+.prev:before {
+  content: '\2039';
+  font-family: slick;
+  font-size: 40px;
+  line-height: 1;
+  opacity: 0.75;
+  color: black;
+  -webkit-font-smoothing: antialiased;
+}
+.mainSlideNext::before {
+  content: '\203A';
+  font-size: 40px;
+  top: 40%;
+  position: absolute;
+}
+.mainSlidePrev::before {
+  content: '\2039';
+  font-size: 40px;
+  top: 40%;
+  position: absolute;
+  margin-left: 5px;
+}
+.mainSlideNextGrey::before {
+  content: '\203A';
+  font-size: 40px;
+  top: 40%;
+  position: absolute;
+  color: grey;
+}
+.mainSlidePrevGrey::before {
+  content: '\2039';
+  font-size: 40px;
+  top: 40%;
+  position: absolute;
+  margin-left: 5px;
+  color: grey;
+}
+.borderBottom {
+  border-bottom: #252525 !important;
+}
+/* style for timeline */
+.timeLineRootLine {
+  padding: 0 0 !important;
+  width: 95% !important;
+}
+
+.timeLineRootLine::before {
+  background: lightgray !important;
+  left: 10% !important; /*20 to 10*/
+}
+
+/* .vertical-timeline-element-icon {
+  width: 20px !important;
+  height: 20px !important;
+  left: 20% !important;
+  margin-left: -10px !important;
+  margin-top: 14px !important;
+} */
+
+.vertical-timeline-element-date {
+  left: auto !important;
+  right: 20% !important; /*23  to 20*/
+  text-align: left !important;
+  font-weight: bolder !important;
+  font-size: large !important;
+  /* new */
+  /* padding: 0 !important; */
+}
+.vertical-timeline-element-content {
+  width: 85% !important;
+  background: transparent !important;
+  box-shadow: 0 0 0 transparent !important;
+}
+.vertical-timeline-element-content::before {
+  border-right-color: transparent !important;
+}
+.vertical-timeline-element-content.bounce-in {
+  -webkit-animation: cd-bounce-2-inverse 0.6s;
+  animation: cd-bounce-2-inverse 0.6s;
+  padding-bottom: 0 !important;
+  padding-top: 10px !important;
+}
+.react-datepicker__input-container {
+  width: 100%;
+  position: relative;
+  display: inline-block;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+}
+input[type='number'] {
+  -moz-appearance: textfield !important;
+}
+.react-datepicker-wrapper {
+  display: inline-block !important;
+  width: 100% !important;
+}
+.max-content {
+  width: max-content;
+  width: -moz-max-content;
+}
+.labelStyleMap {
+  background-color: #e6ca6b !important;
+  color: #252525 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  min-width: max-content;
+  min-width: -moz-max-content;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 6px;
+}
