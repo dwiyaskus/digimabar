@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Segment } from 'semantic-ui-react';
-import styles from './styles';
+import styles from '../home/styles';
 import Card from '../Card/cardHome';
 const array1 = ['a', 'b', 'c', 'd', 'e'];
 const card = () => {

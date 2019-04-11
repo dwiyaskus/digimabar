@@ -1,8 +1,6 @@
 import React from 'react';
 import { Grid, Segment } from 'semantic-ui-react';
-import styles from './styles';
-import Card from '../Card/cardHome';
-const array1 = ['a', 'b', 'c', 'd', 'e'];
+import styles from '../home/styles';
 const card = () => {
   return (
     <Grid
@@ -12,9 +10,12 @@ const card = () => {
     >
       <Grid.Row>
         <Grid.Column width={12} style={styles.noPadding}>
-          {array1.map(data => {
-            return <Card style={{ marginLeft: '1em' }} key={data} />;
-          })}
+          <Segment style={{ padding: '0' }}>
+            <Grid columns={2} padded="vertically">
+              <Grid.Column />
+              <Grid.Column />
+            </Grid>
+          </Segment>
         </Grid.Column>
         <Grid.Column width={4} style={styles.quickLaunchSecondColumnStyle}>
           <Segment style={{ marginLeft: '1em' }} />

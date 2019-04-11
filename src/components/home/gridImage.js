@@ -27,9 +27,6 @@ const image = () => {
             </Grid.Row>
           </Grid>
         </Grid.Column>
-        <Grid.Column width={5} style={styles.quickLaunchSecondColumnStyle}>
-          {/* <CreateCustomPackageSection /> */}
-        </Grid.Column>
       </Grid.Row>
     </Grid>
   );
