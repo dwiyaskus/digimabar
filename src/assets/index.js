@@ -1,5 +1,5 @@
 const body = {
-  margin: '3em 3em 3em 3em',
+  margin: '0.5em',
 };
 
 export { body };

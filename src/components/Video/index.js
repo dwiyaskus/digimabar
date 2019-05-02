@@ -7,7 +7,7 @@ const card = () => {
   return (
     <Grid
       stretched
-      style={{ marginTop: '-3em' }}
+      // style={{ marginTop: '-3em' }}
       className="padding-side-twentyfive container-fit"
     >
       <Grid.Row>

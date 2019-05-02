@@ -32,6 +32,10 @@ class sidebar extends React.Component {
           </Link>
         </Menu.Item>
         <Menu.Item>
+          <Link to="/Profile">Profile</Link>
+        </Menu.Item>
+
+        <Menu.Item>
           <User />
         </Menu.Item>
       </Sidebar>
