@@ -5,9 +5,8 @@ class ButtonDropdown extends React.Component {
     return (
       <Dropdown
         icon={'user'}
-        pointing
         button
-        style={{ color: 'black', zIndex: '99999', backgroundColor: 'white' }}
+        style={{ color: 'black', backgroundColor: 'white' }}
         className="icon"
       >
         <Dropdown.Menu>

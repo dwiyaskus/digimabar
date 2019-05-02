@@ -23,7 +23,7 @@ class App extends React.Component {
     return (
       <Sidebar.Pushable>
         <SidebarMenu />
-        <Sidebar.Pusher style={{ marginTop: '3.5em' }}>
+        <Sidebar.Pusher style={{ margin: '4em' }}>
           <Switch>
             <Route exact path="/" component={HOMEWITHROUTER} />
             <Route exact path="/Home" component={HOMEWITHROUTER} />
