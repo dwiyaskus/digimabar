@@ -38,7 +38,9 @@ class sidebar extends React.Component {
           >
             e Sport
           </Menu.Item>
-
+          <Menu.Item>
+            <User />
+          </Menu.Item>
           <Image
             src={require('../../assets/digimdigim.png')}
             style={{
@@ -67,9 +69,6 @@ class sidebar extends React.Component {
               <div className="results" />
             </div>
           </Menu.Menu>
-          <Menu.Item>
-            <User />
-          </Menu.Item>
         </Menu>
       </div>
     );

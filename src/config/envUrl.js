@@ -11,7 +11,7 @@ if (
 } else if (hostname === 'touresswebqav2.azurewebsites.net') {
   backendHost = 'https://touressapiqa.azurewebsites.net/';
 } else {
-  backendHost = 'https://touressapiqa.azurewebsites.net/';
+  backendHost = 'http://api-digimdigim.neotenstudio.com/';
 }
 
 export const API_ROOT = `${backendHost}/Api`;
