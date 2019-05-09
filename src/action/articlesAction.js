@@ -7,13 +7,14 @@ import {
   GET_ARTICLES,
   GET_ARTICLES_FEEDBACK,
   GET_ARTICLES_REVIEW,
+  RESET_ARTICLES,
 } from './constants/actionTypes';
 
-export const getArticlesAction = () => {
+export const getArticlesAction = (from, to, filterBy, q) => {
   return dispatch => {
     return dispatch({
       type: GET_ARTICLES,
-      payload: getArticlesApi(),
+      payload: getArticlesApi(from, to, filterBy, q),
     });
   };
 };
@@ -41,6 +42,14 @@ export const postArticleFeedback = data => {
     return dispatch({
       type: POST_ARTICLES_FEEDBACK,
       payload: postArticleFeedbackApi(data),
+    });
+  };
+};
+
+export const resetArticlesAction = () => {
+  return dispatch => {
+    return dispatch({
+      type: RESET_ARTICLES,
     });
   };
 };

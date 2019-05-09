@@ -2,9 +2,14 @@ import axios from 'axios';
 
 const apiClient = axios.create({
   baseURL: 'http://api-digimdigim.neotenstudio.com/',
+  // headers: {
+  //   Authorization: 'Bearer ' + localStorage.getItem('tokenadmin'),
+  //   'Content-Type': 'application/json',
+  // },
   headers: {
-    Authorization: 'Bearer ' + localStorage.getItem('tokenadmin'),
+    Accept: 'application/json',
     'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
   },
 });
 

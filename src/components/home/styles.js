@@ -69,6 +69,24 @@ const style = {
     marginBottom: '5px',
   },
   filterHeaderStyle: { fontSize: '25px', fontWeight: '900' },
+  divOpacity: {
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    zIndex: '999999',
+    width: '60em',
+    height: '30em',
+    position: 'absolute',
+    marginTop: '-40em',
+    marginLeft: '5em',
+  },
+  divOpacitySmall: {
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    zIndex: '999999',
+    width: '20em',
+    height: '10em',
+    position: 'absolute',
+    marginTop: '-12em',
+    marginLeft: '1em',
+  },
 };
 
 export default style;

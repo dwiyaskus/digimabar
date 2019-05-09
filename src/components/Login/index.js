@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Dropdown, Input, Button } from 'semantic-ui-react';
 import { postLoginAction } from '../../action/authAction';
 class Login extends React.Component {
@@ -7,12 +8,15 @@ class Login extends React.Component {
     super(props);
     this.state = {
       login: {
-        username: '',
-        password: '',
+        username: 'username1',
+        password: 'password1',
       },
-      openDropdown: true,
+      openDropdown: false,
     };
   }
+  static propTypes = {
+    postLoginAction: PropTypes.func,
+  };
 
   handleChange = (e, { name, value }) => {
     const { login } = this.state;
@@ -21,17 +25,19 @@ class Login extends React.Component {
     //this.validate();
   };
   handleSubmit = () => {
-    // const { login } = this.state;
-    //this.props.postLoginAction(login);
-    fetch('http://api-digimdigim.neotenstudio.com/login', {
-      method: 'POST',
-      body: JSON.stringify({
-        username: 'username1',
-        password: 'password1',
-      }),
-    })
-      .then(response => response.json())
-      .then(data => this.setState({ data }));
+    // const { username, password } = this.state.login;
+    this.props.postLoginAction(this.state.login);
+    // fetch('http://api-digimdigim.neotenstudio.com/login', {
+    //   method: 'POST',
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json',
+    //     'Access-Control-Allow-Origin': '*',
+    //   },
+    //   body: JSON.stringify({ username, password }),
+    // });
+    // .then(response => response.json())
+    // .then(data => this.setState({ data }));
   };
   openSegment = () => {
     const { openDropdown } = this.state;
@@ -45,7 +51,7 @@ class Login extends React.Component {
         style={{ color: 'black', backgroundColor: 'white' }}
         className="icon"
         open={openDropdown}
-        //onClick={this.openSegment}
+        onClick={this.openSegment}
       >
         <Dropdown.Menu>
           <Input
@@ -58,12 +64,11 @@ class Login extends React.Component {
             onChange={this.handleChange}
             name="password"
           />
-          <Button style={{ color: 'blue', backgroundColor: 'white' }}>
-            Daftar
-          </Button>
-          <Button primary onClick={this.handleSubmit}>
-            Masuk
-          </Button>
+          <Button
+            style={{ color: 'blue', backgroundColor: 'white' }}
+            content="Daftar"
+          />
+          <Button primary onClick={this.handleSubmit} content="Masuk" />
         </Dropdown.Menu>
       </Dropdown>
     );
