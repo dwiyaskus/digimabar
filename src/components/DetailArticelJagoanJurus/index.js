@@ -1,9 +1,13 @@
 import React from 'react';
-import { Grid, Image, Segment, Button } from 'semantic-ui-react';
+import { Grid, Image } from 'semantic-ui-react';
 import SegmentComentar from './components/segmentComentar';
 import SegmentDetailJurus from './components/SegmentDetailJurus';
+import SegmentSpecialReport from '../SpecialReport/SegmentSpecialReport';
+import SegmentDetailArticelOnlyOneContent from '../DetailArticel/index';
 import styles from '../home/styles';
-const BLUE_COLOR = '#293989';
+import DummyData from './services/dummyDataDetailArticel';
+import DummySpecial from '../home/services/dummyDataSpecialReport';
+
 const image = () => {
   return (
     <Grid
@@ -15,58 +19,34 @@ const image = () => {
         <Grid.Column width={16} style={styles.noPadding}>
           <Grid columns={2}>
             <Grid.Column style={{ width: '100%', marginBottom: '1px' }}>
-              <Image src={require('../../assets/coverGOT.jpg')} />
+              <Image src={DummyData.cover.original} />
             </Grid.Column>
           </Grid>
         </Grid.Column>
       </Grid.Row>
       <Grid stretched className="padding-side-twentyfive container-fit">
-        <Grid.Row>
-          <Grid.Column width={12} style={{ marginTop: '-5em' }}>
-            <SegmentDetailJurus />
-            {/* <Segment style={{ padding: '0' }}>
-              <Grid columns={2} padded="vertically">
-                <Grid.Column>
-                  <Image src={require('../../assets/coverGOT.jpg')} />
-                </Grid.Column>
-                <Grid.Column />
-              </Grid>
-            </Segment> */}
-          </Grid.Column>
-          <Grid.Column width={4} style={styles.quickLaunchSecondColumnStyle}>
-            <Segment style={{ marginLeft: '1em', backgroundColor: BLUE_COLOR }}>
-              <Button
-                inverted
-                content="Laporan Spesial"
-                // onClick={this.handleClickCategory}
-                name="Laporan Spesial"
-              />
-              <Image
-                src={require('../../assets/coverGOT.jpg')}
-                bordered
-                style={{
-                  borderRadius: '1em',
-                  marginTop: '3em',
-                  borderColor: 'white',
-                }}
-              />
-              <p
-                style={{
-                  color: 'white',
-                  marginTop: '1em',
-                }}
+        {DummyData.sub_contents.length === 1 ? (
+          <SegmentDetailArticelOnlyOneContent data={DummyData} />
+        ) : (
+          <Grid>
+            <Grid.Row>
+              <Grid.Column width={12} style={{ marginTop: '-5em' }}>
+                <SegmentDetailJurus data={DummyData} />
+              </Grid.Column>
+              <Grid.Column
+                width={4}
+                style={styles.quickLaunchSecondColumnStyle}
               >
-                ABCBatman: Arkham Knight Fan Discovers Possible Court of Owls
-                Easter Eggs
-              </p>
-            </Segment>
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column width={12} style={{ marginTop: '1em' }}>
-            <SegmentComentar />
-          </Grid.Column>
-        </Grid.Row>
+                <SegmentSpecialReport object={DummySpecial.article} />
+              </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Column width={12} style={{ marginTop: '1em' }}>
+                <SegmentComentar />
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        )}
       </Grid>
     </Grid>
   );

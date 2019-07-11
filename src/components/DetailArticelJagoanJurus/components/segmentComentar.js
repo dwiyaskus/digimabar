@@ -10,10 +10,11 @@ import {
   Progress,
   Button,
   Image,
+  Popup,
 } from 'semantic-ui-react';
 import InputWithLabel from '../../Input/InputWithLabel';
 export default class ProgressExampleAutoSuccess extends React.Component {
-  state = { percent: 0 };
+  state = { percent: 0, comment: '' };
   increment = () => {
     if (this.state.percent !== 100) {
       this.setState(prevState => ({
@@ -30,6 +31,14 @@ export default class ProgressExampleAutoSuccess extends React.Component {
     }
   };
 
+  handleChange = (e, { name, value }) => {
+    this.setState({ [name]: value });
+  };
+  handleKirim = () => {
+    const { percent, comment } = this.state;
+    alert(percent, comment);
+  };
+
   render() {
     return (
       <Segment>
@@ -43,28 +52,49 @@ export default class ProgressExampleAutoSuccess extends React.Component {
                     as="h4"
                     content="Apakah kamu menyukai artikel diatas?"
                   />
-                  <Progress percent={this.state.percent} indicating />
-                  <Button onClick={this.decrease} name="No">
-                    Tidak Suka
-                  </Button>
-                  <Button onClick={this.increment} name="Yes" floated="right">
-                    Suka
-                  </Button>
+                  <Progress
+                    percent={this.state.percent}
+                    indicating
+                    label={`${this.state.percent}%`}
+                  />
+                  <Popup
+                    content="klik untuk menurunkan presentase kesukaan anda"
+                    trigger={
+                      <Button
+                        onClick={this.decrease}
+                        name="No"
+                        style={{ backgroundColor: 'white', color: 'red' }}
+                        content="Tidak Suka"
+                      />
+                    }
+                  />
+                  <Popup
+                    content="klik untuk menaikan presentase kesukaan anda"
+                    trigger={
+                      <Button
+                        onClick={this.increment}
+                        name="No"
+                        floated="right"
+                        style={{ backgroundColor: 'white', color: 'green' }}
+                        content="Suka"
+                      />
+                    }
+                  />
                   <Divider />
                   <Form>
                     <InputWithLabel
                       inline={false}
                       type="textArea"
-                      // name="EndDate"
-                      // value={props.contentField.EndDate}
+                      name="comment"
+                      value={this.state.comment}
                       placeholder="Tulis komentarmu disini…"
-                      // handleChange={props.handleChange}
-                      //validate={props.errorInformation}
+                      handleChange={this.handleChange}
                     />
                   </Form>
                 </Grid.Column>
               </Grid.Row>
               <Button
+                onClick={this.handleKirim}
                 content="Kirim"
                 primary
                 size="medium"

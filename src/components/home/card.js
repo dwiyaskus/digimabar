@@ -1,9 +1,10 @@
 import React from 'react';
-import { Grid, Segment, Button, Image } from 'semantic-ui-react';
+import { Grid, Button } from 'semantic-ui-react';
 import styles from './styles';
 import Card from '../Card/cardHome';
-const array1 = ['a', 'b', 'c', 'd', 'e'];
-const BLUE_COLOR = '#293989';
+import DummyData from './services/dummyDataCard';
+import DummySpecial from './services/dummyDataSpecialReport';
+import SpecialReport from '../SpecialReport/SegmentSpecialReport';
 class card extends React.Component {
   constructor(props) {
     super(props);
@@ -52,37 +53,14 @@ class card extends React.Component {
         </Grid.Row>
         <Grid.Row>
           <Grid.Column width={12} style={styles.noPadding}>
-            {array1.map(data => {
-              return <Card style={{ marginLeft: '1em' }} key={data} />;
+            {DummyData.data.map(data => {
+              return (
+                <Card style={{ marginLeft: '1em' }} key={data} object={data} />
+              );
             })}
           </Grid.Column>
           <Grid.Column width={4} style={styles.quickLaunchSecondColumnStyle}>
-            <Segment style={{ marginLeft: '1em', backgroundColor: BLUE_COLOR }}>
-              <Button
-                inverted
-                content="Laporan Spesial"
-                // onClick={this.handleClickCategory}
-                name="Laporan Spesial"
-              />
-              <Image
-                src={require('../../assets/coverGOT.jpg')}
-                bordered
-                style={{
-                  borderRadius: '1em',
-                  marginTop: '3em',
-                  borderColor: 'white',
-                }}
-              />
-              <p
-                style={{
-                  color: 'white',
-                  marginTop: '1em',
-                }}
-              >
-                ABCBatman: Arkham Knight Fan Discovers Possible Court of Owls
-                Easter Eggs
-              </p>
-            </Segment>
+            <SpecialReport object={DummySpecial.article} />
           </Grid.Column>
         </Grid.Row>
       </Grid>

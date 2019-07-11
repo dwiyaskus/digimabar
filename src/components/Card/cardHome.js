@@ -8,24 +8,33 @@ import {
   Container,
   Divider,
 } from 'semantic-ui-react';
-const digimabar = () => {
+import PropTypes from 'prop-types';
+const digimabar = props => {
   return (
     <Segment style={{ padding: '0' }}>
       <Grid columns={2} padded="vertically">
         <Grid.Column>
-          <Image src={require('../../assets/coverGOT.jpg')} />
+          <Image src={props.object.cover.medium} />
         </Grid.Column>
         <Grid.Column>
           <Button content="Report" primary />
-          <Header as="h1">Test Header</Header>
+          <Header as="h1">{props.object.title}</Header>
           <Container textAlign="justified" as="h4">
             <Divider />
-            <p> Test Description</p>
+            <p> {props.object.description}</p>
           </Container>
         </Grid.Column>
       </Grid>
     </Segment>
   );
+};
+
+digimabar.propTypes = {
+  object: PropTypes.shape({
+    description: PropTypes.string,
+    cover: PropTypes.string,
+    title: PropTypes.string,
+  }),
 };
 
 export default digimabar;

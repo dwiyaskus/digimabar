@@ -16,6 +16,23 @@ import PropTypes from 'prop-types';
 import { getHeadlineAction, resetHomeAction } from '../../action/homeAction';
 import { getArticlesAction } from '../../action/articlesAction';
 import DummyHeadLine from '../../scripts/dummyHeadline';
+
+const options = {
+  method: 'GET',
+  data: {
+    title: 'foo',
+    body: 'bar',
+    userId: 1,
+  },
+  credentials: 'include',
+  headers: {},
+  // headers: {
+  //   Accept: 'application/json',
+  //   'Content-Type': 'application/json',
+  //   'Access-Control-Allow-Origin': '*',
+  // },
+};
+
 class Headline extends React.Component {
   constructor(props) {
     super(props);
@@ -35,10 +52,22 @@ class Headline extends React.Component {
     loading: PropTypes.bool,
   };
   componentDidMount() {
-    this.props.getHeadlineAction();
-    this.props.getArticlesAction(1, 5, 'terpopuler', 1);
-    fetch('http://api-digimdigim.neotenstudio.com//articles?page=1&per_page=5');
-    fetch('http://api-digimdigim.neotenstudio.com/headlines');
+    // this.props.getHeadlineAction();
+    // fetch('http://localhost:2999/headlines/headlines', options)
+    fetch('https://jsonplaceholder.typicode.com/posts', options)
+      .then(response => {
+        return response.json();
+      })
+      .then(jsonObject => {
+        console.log(jsonObject);
+        // document.write(`ID ${jsonObject.id} was created!`);
+      })
+      .catch(error => {
+        document.write(error);
+      });
+    // this.props.getArticlesAction(1, 5, 'terpopuler', 1);
+    // fetch('http://api-digimdigim.neotenstudio.com//articles?page=1&per_page=5');
+    // fetch('http://api-digimdigim.neotenstudio.com/headlines');
   }
   componentDidUpdate() {
     if (this.props.articlesStatus) {
