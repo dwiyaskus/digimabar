@@ -1,6 +1,9 @@
 import React from 'react';
-import { Grid, Image, Segment } from 'semantic-ui-react';
+import { Grid, Image, Segment, Button } from 'semantic-ui-react';
+import SegmentComentar from './components/segmentComentar';
+import SegmentDetailJurus from './components/SegmentDetailJurus';
 import styles from '../home/styles';
+const BLUE_COLOR = '#293989';
 const image = () => {
   return (
     <Grid
@@ -20,29 +23,48 @@ const image = () => {
       <Grid stretched className="padding-side-twentyfive container-fit">
         <Grid.Row>
           <Grid.Column width={12} style={{ marginTop: '-5em' }}>
-            <Segment style={{ padding: '0' }}>
+            <SegmentDetailJurus />
+            {/* <Segment style={{ padding: '0' }}>
               <Grid columns={2} padded="vertically">
                 <Grid.Column>
                   <Image src={require('../../assets/coverGOT.jpg')} />
                 </Grid.Column>
                 <Grid.Column />
               </Grid>
-            </Segment>
+            </Segment> */}
           </Grid.Column>
           <Grid.Column width={4} style={styles.quickLaunchSecondColumnStyle}>
-            <Segment style={{ marginLeft: '1em', marginTop: '2em' }} />
+            <Segment style={{ marginLeft: '1em', backgroundColor: BLUE_COLOR }}>
+              <Button
+                inverted
+                content="Laporan Spesial"
+                // onClick={this.handleClickCategory}
+                name="Laporan Spesial"
+              />
+              <Image
+                src={require('../../assets/coverGOT.jpg')}
+                bordered
+                style={{
+                  borderRadius: '1em',
+                  marginTop: '3em',
+                  borderColor: 'white',
+                }}
+              />
+              <p
+                style={{
+                  color: 'white',
+                  marginTop: '1em',
+                }}
+              >
+                ABCBatman: Arkham Knight Fan Discovers Possible Court of Owls
+                Easter Eggs
+              </p>
+            </Segment>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
           <Grid.Column width={12} style={{ marginTop: '1em' }}>
-            <Segment style={{ padding: '0' }}>
-              <Grid columns={2} padded="vertically">
-                <Grid.Column>
-                  <Image src={require('../../assets/coverGOT.jpg')} />
-                </Grid.Column>
-                <Grid.Column />
-              </Grid>
-            </Segment>
+            <SegmentComentar />
           </Grid.Column>
         </Grid.Row>
       </Grid>

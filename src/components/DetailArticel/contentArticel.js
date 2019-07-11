@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, Segment } from 'semantic-ui-react';
+import SegmentComentar from '../DetailArticelJagoanJurus/components/segmentComentar';
 import styles from '../home/styles';
 const card = () => {
   return (
@@ -18,7 +19,7 @@ const card = () => {
           </Segment>
         </Grid.Column>
         <Grid.Column width={4} style={styles.quickLaunchSecondColumnStyle}>
-          <Segment style={{ marginLeft: '1em' }} />
+          <SegmentComentar />
         </Grid.Column>
       </Grid.Row>
     </Grid>

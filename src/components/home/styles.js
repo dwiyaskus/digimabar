@@ -1,8 +1,9 @@
 const BLACK_COLOR = '#252525';
 const GOLD_COLOR = '#e6ca6b';
 const WHITE_COLOR = '#FFF';
+const BLUE_COLOR = '#293989';
 
-const style = {
+const styles = {
   segment: {
     border: 'none',
     boxShadow: '0px 4px 6px rgba(0,0,0,0.2)',
@@ -73,7 +74,7 @@ const style = {
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
     zIndex: '999999',
     width: '60em',
-    height: '30em',
+    height: '25em',
     position: 'absolute',
     marginTop: '-40em',
     marginLeft: '5em',
@@ -87,6 +88,17 @@ const style = {
     marginTop: '-12em',
     marginLeft: '1em',
   },
+  buttonStylesCategoryBlue: {
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    color: BLUE_COLOR,
+  },
+  buttonStylesCategoryBlack: {
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    color: BLACK_COLOR,
+  },
+  buttonLaporanSpesial: {
+    backgroundColor: BLUE_COLOR,
+  },
 };
 
-export default style;
+export default styles;

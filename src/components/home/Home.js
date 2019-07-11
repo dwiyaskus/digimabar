@@ -15,11 +15,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getHeadlineAction, resetHomeAction } from '../../action/homeAction';
 import { getArticlesAction } from '../../action/articlesAction';
+import DummyHeadLine from '../../scripts/dummyHeadline';
 class Headline extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
+      // data: [],
+      data: DummyHeadLine,
       data1: {},
     };
   }
@@ -36,6 +38,7 @@ class Headline extends React.Component {
     this.props.getHeadlineAction();
     this.props.getArticlesAction(1, 5, 'terpopuler', 1);
     fetch('http://api-digimdigim.neotenstudio.com//articles?page=1&per_page=5');
+    fetch('http://api-digimdigim.neotenstudio.com/headlines');
   }
   componentDidUpdate() {
     if (this.props.articlesStatus) {
