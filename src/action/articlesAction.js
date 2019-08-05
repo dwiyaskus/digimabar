@@ -8,7 +8,9 @@ import {
   GET_ARTICLES_FEEDBACK,
   GET_ARTICLES_REVIEW,
   RESET_ARTICLES,
+  GET_DETAIL_ARTICLES,
 } from './constants/actionTypes';
+import getDetailArticlesApi from '../api/articles/getDetailArticleApi';
 
 export const getArticlesAction = (from, to, filterBy, q) => {
   return dispatch => {
@@ -50,6 +52,15 @@ export const resetArticlesAction = () => {
   return dispatch => {
     return dispatch({
       type: RESET_ARTICLES,
+    });
+  };
+};
+
+export const getDetailArticlesAction = id => {
+  return dispatch => {
+    return dispatch({
+      type: GET_DETAIL_ARTICLES,
+      payload: getDetailArticlesApi(id),
     });
   };
 };

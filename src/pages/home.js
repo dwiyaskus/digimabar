@@ -15,3 +15,58 @@ class home extends Component {
 }
 
 export default home;
+// import React from 'react';
+// import moment from 'moment';
+// import { Calendar } from 'react-datepicker2';
+// export default class component extends React.Component {
+//   constructor(props) {
+//     super(props);
+
+//     this.state = {
+//       value: moment(),
+//       isGregorian: true,
+//     };
+
+//     this.disabledRanges = [
+//       {
+//         color: 'brown',
+//         // start: moment().add(-1, 'days'),
+//         // end: moment().add(1, 'days'),
+//         start: moment(new Date()),
+//         end: moment(new Date()),
+//       },
+//       {
+//         color: '#00BCD4',
+//         start: moment(),
+//         end: moment().add(3, 'days'),
+//       },
+//       {
+//         color: '#FF9800',
+//         start: moment().add(1, 'days'),
+//         end: moment().add(6, 'days'),
+//       },
+//     ];
+//   }
+//   render() {
+//     return (
+//       <div>
+//         <Calendar
+//           ranges={this.disabledRanges}
+//           value={this.state.value}
+//           isGregorian={this.state.isGregorian}
+//           inputFormat="YYYY-M-D"
+//           inputJalaaliFormat="jYYYY-jM-jD"
+//           onChange={value => this.setState({ value })}
+//         />
+//         <br />
+//         <button
+//           onClick={() =>
+//             this.setState({ isGregorian: !this.state.isGregorian })
+//           }
+//         >
+//           {this.state.isGregorian ? 'switch to jalaali' : 'switch to gregorian'}
+//         </button>
+//       </div>
+//     );
+//   }
+// }

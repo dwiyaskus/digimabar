@@ -7,7 +7,7 @@ const SegmentSpecialReport = props => {
     <Segment style={{ marginLeft: '1em', backgroundColor: BLUE_COLOR }}>
       <Button inverted content="Laporan Spesial" name="Laporan Spesial" />
       <Image
-        src={props.object.cover.small}
+        src={props.object.coverSmall}
         bordered
         style={{
           borderRadius: '1em',
@@ -32,6 +32,7 @@ SegmentSpecialReport.propTypes = {
     description: PropTypes.string,
     cover: PropTypes.string,
     title: PropTypes.string,
+    coverSmall: PropTypes.string,
   }),
 };
 

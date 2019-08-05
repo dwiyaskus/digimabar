@@ -1,17 +1,9 @@
 import React from 'react';
-import {
-  Segment,
-  Image,
-  Grid,
-  Button,
-  Header,
-  Container,
-  Divider,
-} from 'semantic-ui-react';
+import { Segment, Grid, Button, Header, Container } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 const digimabar = props => {
   return (
-    <Segment>
+    <Segment loading={props.loading}>
       <Grid columns={3}>
         <Grid.Row>
           <Grid.Column>
@@ -35,6 +27,7 @@ digimabar.propTypes = {
     cover: PropTypes.string,
     title: PropTypes.string,
   }),
+  loading: PropTypes.bool,
 };
 
 export default digimabar;

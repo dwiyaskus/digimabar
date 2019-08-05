@@ -6,11 +6,11 @@ import {
 import getSpecialReportApi from '../api/home/getSpecialReportApi';
 import getHeadlineApi from '../api/home/getHeadlineApi';
 
-export const getSpecialReportAction = (from, to) => {
+export const getSpecialReportAction = () => {
   return dispatch => {
     return dispatch({
       type: GET_SPECIAL_REPORT,
-      payload: getSpecialReportApi(from, to),
+      payload: getSpecialReportApi(),
     });
   };
 };

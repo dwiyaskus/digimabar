@@ -4,6 +4,8 @@ const initialState = {
   loading: false,
   loginStatus: '',
   logoutAdminStatus: '',
+  getProfileData: {},
+  getProfileDataStatus: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -25,11 +27,29 @@ const reducer = (state = initialState, action) => {
         loading: false,
         loginStatus: 'success',
       };
+    case types.GET_PROFILE:
+      return { ...state };
+    case types.GET_PROFILE_REJECTED:
+      return {
+        ...state,
+        loading: false,
+        getProfileDataStatus: false,
+      };
+    case types.GET_PROFILE_PENDING:
+      return { ...state, loading: true };
+    case types.GET_PROFILE_FULFILLED:
+      return {
+        ...state,
+        loading: false,
+        getProfileDataStatus: true,
+        getProfileData: action.payload.data,
+      };
     case types.RESET_LOGIN:
       return {
         ...state,
         loginStatus: '',
         logoutAdminStatus: '',
+        getProfileDataStatus: null,
       };
     // case types.LOGOUT:
     //   localStorage.clear();

@@ -8,6 +8,7 @@ const apiClient = axios.create({
   // },
   headers: {
     Accept: 'application/json',
+    Authorization: 'Bearer ' + localStorage.getItem('tokenadmin'),
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
   },

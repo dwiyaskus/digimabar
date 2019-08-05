@@ -15,31 +15,33 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getHeadlineAction, resetHomeAction } from '../../action/homeAction';
 import { getArticlesAction } from '../../action/articlesAction';
-import DummyHeadLine from '../../scripts/dummyHeadline';
+import { Redirect } from 'react-router-dom';
+// import DummyHeadLine from '../../scripts/dummyHeadline';
 
-const options = {
-  method: 'GET',
-  data: {
-    title: 'foo',
-    body: 'bar',
-    userId: 1,
-  },
-  credentials: 'include',
-  headers: {},
-  // headers: {
-  //   Accept: 'application/json',
-  //   'Content-Type': 'application/json',
-  //   'Access-Control-Allow-Origin': '*',
-  // },
-};
+// const options = {
+//   method: 'GET',
+//   data: {
+//     title: 'foo',
+//     body: 'bar',
+//     userId: 1,
+//   },
+//   credentials: 'include',
+//   headers: {},
+//   // headers: {
+//   //   Accept: 'application/json',
+//   //   'Content-Type': 'application/json',
+//   //   'Access-Control-Allow-Origin': '*',
+//   // },
+// };
 
 class Headline extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // data: [],
-      data: DummyHeadLine,
+      data: [],
       data1: {},
+      changePage: false,
+      gotoLink: '',
     };
   }
 
@@ -52,22 +54,7 @@ class Headline extends React.Component {
     loading: PropTypes.bool,
   };
   componentDidMount() {
-    // this.props.getHeadlineAction();
-    // fetch('http://localhost:2999/headlines/headlines', options)
-    fetch('https://jsonplaceholder.typicode.com/posts', options)
-      .then(response => {
-        return response.json();
-      })
-      .then(jsonObject => {
-        console.log(jsonObject);
-        // document.write(`ID ${jsonObject.id} was created!`);
-      })
-      .catch(error => {
-        document.write(error);
-      });
-    // this.props.getArticlesAction(1, 5, 'terpopuler', 1);
-    // fetch('http://api-digimdigim.neotenstudio.com//articles?page=1&per_page=5');
-    // fetch('http://api-digimdigim.neotenstudio.com/headlines');
+    this.props.getHeadlineAction();
   }
   componentDidUpdate() {
     if (this.props.articlesStatus) {
@@ -80,10 +67,17 @@ class Headline extends React.Component {
       this.props.resetHomeAction();
     }
   }
+  handleOnClickReview = (e, { name }) => {
+    let link = `/Detail-Articel-Jurus/${name}`;
+    this.setState({ changePage: true, gotoLink: link });
+  };
 
   render() {
-    const { data } = this.state;
+    const { data, changePage, gotoLink } = this.state;
     let data1 = data.length > 0 && data[0];
+    if (changePage) {
+      return <Redirect to={gotoLink} />;
+    }
     return (
       <Grid
         stretched
@@ -106,7 +100,12 @@ class Headline extends React.Component {
                   fluid
                 />
                 <Segment style={styles.divOpacity} loading={this.props.loading}>
-                  <Button content="Review" primary />
+                  <Button
+                    content="Review"
+                    primary
+                    name={data.length > 0 ? data1.article.slug : ''}
+                    onClick={this.handleOnClickReview}
+                  />
                   <Header as="h1">
                     {data.length > 0 ? data1.article.title : ''}
                   </Header>
@@ -124,7 +123,12 @@ class Headline extends React.Component {
                     style={styles.divOpacitySmall}
                     loading={this.props.loading}
                   >
-                    <Button content="Review" primary />
+                    <Button
+                      content="Review"
+                      primary
+                      name={data.length > 0 ? data1.article.slug : ''}
+                      onClick={this.handleOnClickReview}
+                    />
                     <Container style={{ fontWeight: 'bold' }}>
                       {data.length > 0 ? data1.article.title : ''}
                     </Container>
@@ -143,7 +147,12 @@ class Headline extends React.Component {
                     style={styles.divOpacitySmall}
                     loading={this.props.loading}
                   >
-                    <Button content="Review" primary />
+                    <Button
+                      content="Review"
+                      primary
+                      name={data.length > 0 ? data[1].article.slug : ''}
+                      onClick={this.handleOnClickReview}
+                    />
                     <Container style={{ fontWeight: 'bold' }}>
                       {data.length > 0 ? data[1].article.title : ''}
                     </Container>
@@ -162,7 +171,12 @@ class Headline extends React.Component {
                     style={styles.divOpacitySmall}
                     loading={this.props.loading}
                   >
-                    <Button content="Review" primary />
+                    <Button
+                      content="Review"
+                      primary
+                      name={data.length > 0 ? data[2].article.slug : ''}
+                      onClick={this.handleOnClickReview}
+                    />
                     <Container style={{ fontWeight: 'bold' }}>
                       {data.length > 0 ? data[2].article.title : ''}
                     </Container>

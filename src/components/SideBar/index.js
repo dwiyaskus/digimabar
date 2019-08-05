@@ -1,13 +1,33 @@
 import React from 'react';
 import { Menu, Image } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import User from '../Login/index';
-class sidebar extends React.Component {
-  state = { activeItem: 'home' };
 
+import { connect } from 'react-redux';
+class sidebar extends React.Component {
+  state = {
+    activeItem: 'home',
+    searchInput: '',
+    changePage: false,
+    gotoLink: '',
+  };
+
+  handleSearchInput = e => this.setState({ searchInput: e.target.value });
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+  handleOnClickSearch = () => {
+    this.changePage();
+  };
+  changePage = () => {
+    const { searchInput } = this.state;
+    let link = `/Search/${searchInput}`;
+    this.setState({ changePage: true, gotoLink: link });
+    <Link to={link} />;
+  };
   render() {
-    const { activeItem } = this.state;
+    const { activeItem, changePage, gotoLink } = this.state;
+    if (changePage) {
+      return <Redirect to={gotoLink} />;
+    }
     return (
       <div
         style={{
@@ -38,40 +58,59 @@ class sidebar extends React.Component {
           >
             e Sport
           </Menu.Item>
-          <Menu.Item>
-            <User />
-          </Menu.Item>
           <Image
             src={require('../../assets/digimdigim.png')}
             style={{
               width: '90px',
               height: '40px',
-              marginLeft: '30em',
+              marginLeft: '20em',
               marginTop: '1em',
             }}
           />
-          <h3
-            style={{ color: '#b92025', marginLeft: '10em', fontWeight: 'bold' }}
-          >
-            DIGIMABAR
-          </h3>
-
-          <Menu.Menu position="right">
+          <Menu.Menu>
             <div className="ui right aligned category search item">
               <div className="ui transparent icon input">
-                <input
-                  className="prompt"
-                  type="text"
-                  placeholder="Search animals..."
-                />
-                <i className="search link icon" />
+                <form onSubmit={this.handleOnClickSearch}>
+                  <input
+                    className="prompt"
+                    type="text"
+                    placeholder="Search ..."
+                    style={{
+                      marginLeft: '10em',
+                      border: 'none',
+                    }}
+                    onChange={this.handleSearchInput}
+                  />
+                  <i
+                    className="search link icon"
+                    onClick={this.handleOnClickSearch}
+                  />
+                </form>
               </div>
               <div className="results" />
             </div>
           </Menu.Menu>
+          <Menu.Item position="right">
+            <User />
+          </Menu.Item>
+          <h3
+            style={{ color: '#b92025', marginLeft: '3em', fontWeight: 'bold' }}
+          >
+            DIGIMABAR
+          </h3>
         </Menu>
       </div>
     );
   }
 }
-export default sidebar;
+
+function mapStateToProps(state) {
+  return {
+    loginStatus: state.authStore.loginStatus,
+    loading: state.authStore.loading,
+  };
+}
+export default connect(
+  mapStateToProps,
+  {}
+)(sidebar);

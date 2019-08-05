@@ -7,7 +7,7 @@ import {
   Container,
   Grid,
 } from 'semantic-ui-react';
-import DummyData from '../services/dummyDataDetailArticel';
+// import DummyData from '../services/dummyDataDetailArticel';
 import { convertDateFormat } from '../../../scripts/moment';
 export default class SegmentDetailJurus extends React.Component {
   constructor(props) {
@@ -29,52 +29,44 @@ export default class SegmentDetailJurus extends React.Component {
   };
   renderDetail = () => {
     const { jurus, panduan, racikan } = this.state;
+    const { data } = this.props;
     if (jurus) {
       return (
         <div>
-          jurus
-          {DummyData.sub_contents.map(
-            data =>
-              data.title === 'Jurus Digim' && (
-                <Grid key={data}>
-                  <Grid.Column width={9}>
-                    {data.content.replace(/<(.|\n)*?>/g, '')}
-                  </Grid.Column>
-                </Grid>
-              )
-          )}
+          {data.sub_contents.map(object => (
+            <Grid key={object}>
+              <Grid.Column width={9}>
+                {object.id.replace(/<(.|\n)*?>/g, '')}
+                {object.content.replace(/<(.|\n)*?>/g, '')}
+              </Grid.Column>
+            </Grid>
+          ))}
         </div>
       );
     } else if (panduan) {
       return (
         <div>
-          panduan
-          {DummyData.sub_contents.map(
-            data =>
-              data.title === 'Panduan Digim' && (
-                <Grid key={data}>
-                  <Grid.Column width={9}>
-                    {data.content.replace(/<(.|\n)*?>/g, '')}
-                  </Grid.Column>
-                </Grid>
-              )
-          )}
+          {data.sub_contents.map(object => (
+            <Grid key={object}>
+              <Grid.Column width={9}>
+                {object.id.replace(/<(.|\n)*?>/g, '')}
+                {object.content.replace(/<(.|\n)*?>/g, '')}
+              </Grid.Column>
+            </Grid>
+          ))}
         </div>
       );
     } else if (racikan) {
       return (
         <div>
-          racikan
-          {DummyData.sub_contents.map(
-            data =>
-              data.title === 'Trick Digim' && (
-                <Grid key={data}>
-                  <Grid.Column width={9}>
-                    {data.content.replace(/<(.|\n)*?>/g, '')}
-                  </Grid.Column>
-                </Grid>
-              )
-          )}
+          {data.sub_contents.map(object => (
+            <Grid key={object}>
+              <Grid.Column width={9}>
+                {object.id.replace(/<(.|\n)*?>/g, '')}
+                {object.content.replace(/<(.|\n)*?>/g, '')}
+              </Grid.Column>
+            </Grid>
+          ))}
         </div>
       );
     }
@@ -82,6 +74,7 @@ export default class SegmentDetailJurus extends React.Component {
   render() {
     // const props = this.props;
     const { panduan, jurus, racikan } = this.state;
+    const { data } = this.props;
     return (
       <Segment>
         <Button
@@ -92,12 +85,12 @@ export default class SegmentDetailJurus extends React.Component {
             color: 'white',
           }}
         />
-        <Header as="h2" content={DummyData.title} />
+        <Header as="h2" content={data.title} />
         <Container
           content={`${convertDateFormat(
-            DummyData.created_at,
+            data.created_at,
             'DD MMMM YYYY'
-          )} | Oleh ${DummyData.author.name}`}
+          )} | Oleh ${data.author.name}`}
         />
         <Divider />
         <Grid centered columns={2}>

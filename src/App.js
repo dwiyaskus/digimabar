@@ -21,13 +21,6 @@ const PROFILEWITHROUTER = withRouter(Profile);
 const SEARCHPAGEWITHROUTER = withRouter(SearchPage);
 
 class App extends React.Component {
-  componentDidMount() {
-    localStorage.setItem(
-      'tokenadmin',
-      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGktZGlnaW1kaWdpbS5uZW90ZW5zdHVkaW8uY29tXC9sb2dpbiIsImlhdCI6MTU2MjIyMjczMiwiZXhwIjoxNTYyMjI5OTMyLCJuYmYiOjE1NjIyMjI3MzIsImp0aSI6IkVOWGhEdFJ5QU5ySXdrT2kiLCJzdWIiOjMsInBydiI6ImY2NGQ0OGE2Y2VjN2JkZmE3ZmJmODk5NDU0YjQ4OGIzZTQ2MjUyMGEifQ.ntg0PbVhgSid3PyKgrZzcvVGeAuCw1G_mOSytRvrWHQ'
-    );
-  }
-
   render() {
     return (
       <div style={{ backgroundColor: '#fafafa', paddingTop: '3em' }}>
@@ -59,11 +52,15 @@ class App extends React.Component {
                 />
                 <Route
                   exact
-                  path="/Detail-Articel-Jurus"
+                  path="/Detail-Articel-Jurus/:ID"
                   component={DETAILARTICEJURUSLWITHROUTER}
                 />
                 <Route exact path="/Profile" component={PROFILEWITHROUTER} />
-                <Route exact path="/Search" component={SEARCHPAGEWITHROUTER} />
+                <Route
+                  exact
+                  path="/Search/:Types"
+                  component={SEARCHPAGEWITHROUTER}
+                />
                 <Redirect to="/ComingSoon" />
               </Switch>
             </Sidebar.Pusher>

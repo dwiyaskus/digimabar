@@ -49,18 +49,18 @@ const dummy = {
       content:
         '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum iure possimus quae repellat sit! Fuga harum placeat voluptatum. Dolore eaque hic magnam modi omnis, placeat quidem repellendus sapiente sint voluptate!</p>',
     },
-    // {
-    //   id: '22',
-    //   title: 'Jurus Digim',
-    //   content:
-    //     '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum iure possimus quae repellat sit! Fuga harum placeat voluptatum. Dolore eaque hic magnam modi omnis, placeat quidem repellendus sapiente sint voluptate!<br></p>',
-    // },
-    // {
-    //   id: '23',
-    //   title: 'Trick Digim',
-    //   content:
-    //     '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum iure possimus quae repellat sit! Fuga harum placeat voluptatum. Dolore eaque hic magnam modi omnis, placeat quidem repellendus sapiente sint voluptate!<br></p>',
-    // },
+    {
+      id: '22',
+      title: 'Jurus Digim',
+      content:
+        '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum iure possimus quae repellat sit! Fuga harum placeat voluptatum. Dolore eaque hic magnam modi omnis, placeat quidem repellendus sapiente sint voluptate!<br></p>',
+    },
+    {
+      id: '23',
+      title: 'Trick Digim',
+      content:
+        '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum iure possimus quae repellat sit! Fuga harum placeat voluptatum. Dolore eaque hic magnam modi omnis, placeat quidem repellendus sapiente sint voluptate!<br></p>',
+    },
   ],
   created_at: '2018-11-03T17:00:53+07:00',
 };
