@@ -9,12 +9,32 @@ import {
   Form,
   Progress,
   Button,
-  Image,
   Popup,
+  Image,
 } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 import InputWithLabel from '../../Input/InputWithLabel';
-export default class ProgressExampleAutoSuccess extends React.Component {
-  state = { percent: 0, comment: '' };
+import { getProfileAction } from '../../../action/authAction';
+import {
+  postArticleFeedback,
+  getArticleFeebackAction,
+} from '../../../action/articlesAction';
+import { connect } from 'react-redux';
+import ModalAlert from '../../GlobalFunction/modalAlert';
+import moment from 'moment';
+
+class ProgressExampleAutoSuccess extends React.Component {
+  state = {
+    percent: 0,
+    comment: '',
+    idUser: 0,
+    modalOpen: false,
+    headerAlert: '',
+    contentAlert: '',
+    loading: false,
+    dataFeedback: [],
+    loadingFeedBack: true,
+  };
   increment = () => {
     if (this.state.percent !== 100) {
       this.setState(prevState => ({
@@ -30,13 +50,83 @@ export default class ProgressExampleAutoSuccess extends React.Component {
       }));
     }
   };
+  static propTypes = {
+    getProfileAction: PropTypes.func,
+    getArticleFeebackAction: PropTypes.func,
+    postArticleFeedback: PropTypes.func,
+  };
 
+  componentDidMount() {
+    this.props
+      .getProfileAction()
+      .then(res => {
+        this.getData(res.value.data.id);
+        this.setState({
+          idUser: res.value.data.id,
+        });
+      })
+      .catch(() => {
+        this.modalFailed();
+      });
+  }
+
+  getData = id => {
+    this.setState({ loadingFeedBack: true });
+    this.props
+      .getArticleFeebackAction(id, 1, 5)
+      .then(res => {
+        this.setState({ dataFeedback: res.value.data.data });
+        this.setState({ loadingFeedBack: false });
+      })
+      .catch(() => {
+        this.modalFailed();
+        this.setState({ loadingFeedBack: false });
+      });
+  };
   handleChange = (e, { name, value }) => {
     this.setState({ [name]: value });
   };
   handleKirim = () => {
-    const { percent, comment } = this.state;
-    alert(percent, comment);
+    const { percent, comment, idUser } = this.state;
+    const data = {
+      rating: percent / 20,
+      comment: comment,
+    };
+    this.setState({
+      loading: true,
+    });
+    this.props
+      .postArticleFeedback(idUser, data)
+      .then(() => {
+        this.setState({
+          modalOpen: true,
+          contentAlert: 'Feedback successfully entered ',
+          headerAlert: 'Success',
+          loading: false,
+        });
+        this.getData(this.state.idUser);
+      })
+      .catch(() => {
+        this.setState({
+          modalOpen: true,
+          contentAlert: 'failed to entered feedback ',
+          headerAlert: 'Failed',
+          loading: false,
+        });
+      });
+  };
+
+  modalFailed = () => {
+    this.setState({
+      modalOpen: true,
+      contentAlert: 'failed to load the data ',
+      headerAlert: 'Failed',
+      loading: false,
+    });
+  };
+
+  handleCloseAlert = () => {
+    this.setState({ modalOpen: false });
   };
 
   render() {
@@ -94,7 +184,7 @@ export default class ProgressExampleAutoSuccess extends React.Component {
                 </Grid.Column>
               </Grid.Row>
               <Button
-                onClick={this.handleKirim}
+                onClick={() => this.handleKirim()}
                 content="Kirim"
                 primary
                 size="medium"
@@ -103,6 +193,7 @@ export default class ProgressExampleAutoSuccess extends React.Component {
                   marginBottom: '1em',
                   width: '10em',
                 }}
+                loading={this.state.loading}
               />
             </Grid>
           </Grid.Column>
@@ -115,112 +206,58 @@ export default class ProgressExampleAutoSuccess extends React.Component {
                 maxHeight: '250px',
               }}
             >
-              <Feed>
-                <Feed.Event>
-                  <Feed.Label>
-                    <Image src="https://react.semantic-ui.com/images/avatar/small/elliot.jpg" />
-                  </Feed.Label>
-                  <Feed.Content>
-                    <Feed.Summary>
-                      <Feed.User>Elliot Fu</Feed.User> added you as a friend
-                      <Feed.Date>1 Hour Ago</Feed.Date>
-                    </Feed.Summary>
-                    <Feed.Meta>
-                      <Feed.Like>
-                        <Icon name="like" />4 Likes
-                      </Feed.Like>
-                    </Feed.Meta>
-                  </Feed.Content>
-                </Feed.Event>
-
-                <Feed.Event>
-                  <Feed.Label image="/images/avatar/small/helen.jpg" />
-                  <Feed.Content>
-                    <Feed.Summary>
-                      <a>Helen Troy</a> added <a>2 new illustrations</a>
-                      <Feed.Date>4 days ago</Feed.Date>
-                    </Feed.Summary>
-                    <Feed.Extra images>
-                      <a>
-                        <Image src="https://react.semantic-ui.com/images/wireframe/image.png" />
-                      </a>
-                      <a>
-                        <Image src="https://react.semantic-ui.com/images/wireframe/image.png" />
-                      </a>
-                    </Feed.Extra>
-                    <Feed.Meta>
-                      <Feed.Like>
-                        <Icon name="like" />1 Like
-                      </Feed.Like>
-                    </Feed.Meta>
-                  </Feed.Content>
-                </Feed.Event>
-
-                <Feed.Event>
-                  <Feed.Label image="/images/avatar/small/jenny.jpg" />
-                  <Feed.Content>
-                    <Feed.Summary
-                      date="2 Days Ago"
-                      user="Jenny Hess"
-                      content="add you as a friend"
-                    />
-                    <Feed.Meta>
-                      <Feed.Like>
-                        <Icon name="like" />8 Likes
-                      </Feed.Like>
-                    </Feed.Meta>
-                  </Feed.Content>
-                </Feed.Event>
-
-                <Feed.Event>
-                  <Feed.Label image="/images/avatar/small/joe.jpg" />
-                  <Feed.Content>
-                    <Feed.Summary>
-                      <a>Joe Henderson</a> posted on his page
-                      <Feed.Date>3 days ago</Feed.Date>
-                    </Feed.Summary>
-                    <Feed.Extra text>
-                      Ours is a life of constant reruns. Were always circling
-                      back to where wed we started, then starting all over
-                      again. Even if we dont run extra laps that day, we surely
-                      will come back for more of the same another day soon.
-                    </Feed.Extra>
-                    <Feed.Meta>
-                      <Feed.Like>
-                        <Icon name="like" />5 Likes
-                      </Feed.Like>
-                    </Feed.Meta>
-                  </Feed.Content>
-                </Feed.Event>
-
-                <Feed.Event>
-                  <Feed.Label image="/images/avatar/small/justen.jpg" />
-                  <Feed.Content>
-                    <Feed.Summary>
-                      <a>Justen Kitsune</a> added <a>2 new photos</a> of you
-                      <Feed.Date>4 days ago</Feed.Date>
-                    </Feed.Summary>
-                    <Feed.Extra images>
-                      <a>
-                        <Image src="https://react.semantic-ui.com/images/wireframe/image.png" />
-                      </a>
-                      <a>
-                        <Image src="https://react.semantic-ui.com/images/wireframe/image.png" />
-                      </a>
-                    </Feed.Extra>
-                    <Feed.Meta>
-                      <Feed.Like>
-                        <Icon name="like" />
-                        41 Likes
-                      </Feed.Like>
-                    </Feed.Meta>
-                  </Feed.Content>
-                </Feed.Event>
+              <Feed
+                as={Segment}
+                loading={this.state.loadingFeedBack}
+                style={{ width: '27em', border: 'none' }}
+              >
+                {this.state.dataFeedback &&
+                  this.state.dataFeedback.map((data, idx) => {
+                    return (
+                      <Feed.Event key={idx}>
+                        <Feed.Label>
+                          <Image src={data.user.profile_picture} />
+                        </Feed.Label>
+                        <Feed.Content>
+                          <Feed.Summary>
+                            <Feed.User>{data.user.name}</Feed.User>{' '}
+                            {data.comment}
+                            <Feed.Date>
+                              {moment(data.created_at).format('DD MMMM YYYY')}
+                            </Feed.Date>
+                          </Feed.Summary>
+                          <Feed.Meta>
+                            <Feed.Like>
+                              <Icon name="star" /> {data.rating} Star
+                            </Feed.Like>
+                          </Feed.Meta>
+                        </Feed.Content>
+                      </Feed.Event>
+                    );
+                  })}
               </Feed>
             </Grid>
           </Grid.Column>
         </Grid>
+        <ModalAlert
+          openModal={this.state.modalOpen}
+          handleClose={this.handleCloseAlert}
+          header={this.state.headerAlert}
+          content={this.state.contentAlert}
+          nameButton="OK"
+        />
       </Segment>
     );
   }
 }
+function mapStateToProps() {
+  return {};
+}
+export default connect(
+  mapStateToProps,
+  {
+    getProfileAction,
+    getArticleFeebackAction,
+    postArticleFeedback,
+  }
+)(ProgressExampleAutoSuccess);

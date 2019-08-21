@@ -21,11 +21,11 @@ export const getArticlesAction = (from, to, filterBy, q) => {
   };
 };
 
-export const getArticleFeebackAction = (from, to) => {
+export const getArticleFeebackAction = (id, from, to) => {
   return dispatch => {
     return dispatch({
       type: GET_ARTICLES_FEEDBACK,
-      payload: getArticleFeebackApi(from, to),
+      payload: getArticleFeebackApi(id, from, to),
     });
   };
 };
@@ -39,11 +39,11 @@ export const getArticleReviewAction = () => {
   };
 };
 
-export const postArticleFeedback = data => {
+export const postArticleFeedback = (id, data) => {
   return dispatch => {
     return dispatch({
       type: POST_ARTICLES_FEEDBACK,
-      payload: postArticleFeedbackApi(data),
+      payload: postArticleFeedbackApi(id, data),
     });
   };
 };

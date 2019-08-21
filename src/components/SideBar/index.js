@@ -10,7 +10,14 @@ class sidebar extends React.Component {
     searchInput: '',
     changePage: false,
     gotoLink: '',
+    haveToken: false,
   };
+  componentDidMount() {
+    const getToken = localStorage.getItem('tokenadmin');
+    if (getToken) {
+      this.setState({ haveToken: true });
+    }
+  }
 
   handleSearchInput = e => this.setState({ searchInput: e.target.value });
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
@@ -21,13 +28,9 @@ class sidebar extends React.Component {
     const { searchInput } = this.state;
     let link = `/Search/${searchInput}`;
     this.setState({ changePage: true, gotoLink: link });
-    <Link to={link} />;
   };
-  render() {
-    const { activeItem, changePage, gotoLink } = this.state;
-    if (changePage) {
-      return <Redirect to={gotoLink} />;
-    }
+  rendered = () => {
+    const { activeItem } = this.state;
     return (
       <div
         style={{
@@ -91,7 +94,7 @@ class sidebar extends React.Component {
             </div>
           </Menu.Menu>
           <Menu.Item position="right">
-            <User />
+            <User haveToken={this.state.haveToken} />
           </Menu.Item>
           <h3
             style={{ color: '#b92025', marginLeft: '3em', fontWeight: 'bold' }}
@@ -101,6 +104,18 @@ class sidebar extends React.Component {
         </Menu>
       </div>
     );
+  };
+  render() {
+    const { changePage, gotoLink } = this.state;
+    if (changePage) {
+      return (
+        <div>
+          {this.rendered()}
+          <Redirect to={gotoLink} />;
+        </div>
+      );
+    }
+    return this.rendered();
   }
 }
 
