@@ -1,8 +1,8 @@
 import apiClient from '../apiClient';
 import { PUT_PROFILE_URL } from './authUrl';
 
-const putProfileApi = (id, data) => {
-  return apiClient.put(PUT_PROFILE_URL(id), data);
+const putProfileApi = data => {
+  return apiClient.post(PUT_PROFILE_URL, data);
 };
 
 export default putProfileApi;

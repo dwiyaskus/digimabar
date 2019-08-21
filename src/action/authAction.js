@@ -28,11 +28,11 @@ export const postRegisterAction = data => {
   };
 };
 
-export const putProfileAction = (id, data) => {
+export const putProfileAction = data => {
   return dispatch => {
     return dispatch({
       type: PUT_PROFILE,
-      payload: putProfileApi(id, data),
+      payload: putProfileApi(data),
     });
   };
 };
